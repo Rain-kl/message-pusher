@@ -2,15 +2,15 @@ version: "3"
 
 services:
   message-pusher:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: message-pusher:alpine
+    image: ghcr.io/rain-kl/message-pusher:v0.4.12.1
     restart: unless-stopped
     ports:
-      - 33000:3000
+      - 23000:3000
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - ./data:/data
+      - pusher_data:/data
       - /etc/localtime:/etc/localtime:ro
+
+volumes:
+  pusher_data:
