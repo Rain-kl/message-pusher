@@ -1,10 +1,11 @@
-FROM node:16 as builder
+FROM node:18 as builder
 
 WORKDIR /build
 COPY ./web .
 COPY ./VERSION .
-RUN yarn install
-RUN REACT_APP_VERSION=$(cat VERSION) yarn build
+RUN npm install pnpm -g
+RUN pnpm install
+RUN REACT_APP_VERSION=$(cat VERSION) pnpm build
 
 FROM golang AS builder2
 
